@@ -13,9 +13,7 @@ namespace mr {
 
 /**
  * @brief Шаблон пула потоков.
- * @tparam N - количество потоков пула.
  */
-template <size_t N = 1>
 class ThreadPool {
   public:
     explicit ThreadPool() = default;
@@ -29,11 +27,12 @@ class ThreadPool {
     ThreadPool& operator = (ThreadPool&&) = delete;
 
     /**
-     * @brief Запуск всех потоков пула.
+     * @brief Запуск потоков пула.
+     * @param threads_num - общее число потоков.
      */
-    void start() {
-      for(auto i = 0; i < N; ++i) {
-        threads_[i] = std::thread([this] {
+    void start(size_t threads_num) {
+      for(auto i = 0; i < threads_num; ++i) {
+        threads_.emplace_back(std::thread([this] {
           for(;;) {
             std::function<void()> task;
             {
@@ -47,7 +46,7 @@ class ThreadPool {
             }
             task();
           }
-        });
+        }));
       }
     }
 
@@ -60,9 +59,9 @@ class ThreadPool {
         stop_ = true;
       }
       job_avail_.notify_all();
-      for(auto i = 0; i < N; ++i) {
-        if(threads_[i].joinable())
-          threads_[i].join();
+      for(auto& it: threads_) {
+        if(it.joinable())
+          it.join();
       }
     }
 
@@ -105,7 +104,7 @@ class ThreadPool {
     std::mutex                        job_mutex_{};
     std::condition_variable           job_avail_{};
     std::queue<std::function<void()>> jobs_{};
-    std::array<std::thread, N>        threads_{};
+    std::vector<std::thread>          threads_{};
 };
 
 } // namespace mr.

@@ -8,7 +8,7 @@
 
 int main(int argc, char const *argv[])
 {
-  std::cout << "bulkmt version: "
+  std::cout << "yamr version: "
             << ver_major() << "."
             << ver_minor() << "."
             << ver_patch() << std::endl;
@@ -32,8 +32,12 @@ int main(int argc, char const *argv[])
     return EXIT_FAILURE;
   }
 
-  mr::MapReduce<mr::Mapper, mr::Reducer> map_reduce;
-  map_reduce.process(filename, mnum, rnum);
+  try {
+    mr::MapReduce<mr::Mapper, mr::Reducer> map_reduce(filename, mnum, rnum);
+    map_reduce.process();
+  } catch(std::exception& e) {
+    std::cerr << e.what() << std::endl;
+  }
 
   return 0;
 }

@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -12,10 +11,8 @@ namespace mr {
  */
 struct Reducer
 {
-  auto operator()(const std::string& str) {
-    std::vector<std::string> map;
-
-    return map;
+  auto operator() (const std::string& str) {
+    return 1;
   }
 };
 
