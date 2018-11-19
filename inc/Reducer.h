@@ -1,8 +1,7 @@
 ﻿#pragma once
 
-#include <algorithm>
 #include <string>
-#include <vector>
+#include <unordered_map>
 
 namespace mr {
 
@@ -12,8 +11,17 @@ namespace mr {
 struct Reducer
 {
   auto operator() (const std::string& str) {
-    return 1;
+    if(++freq_[str] > 1) // Строка встречается более одного раза, необходимо проверять префиксы.
+      if(str.length() > max_pref_) // Длина строки больше максимальной длины префикса.
+        max_pref_ = str.length();
+    return max_pref_;
   }
+
+private:
+  /// Максимальная длина префикса.
+  size_t max_pref_{};
+  /// Частотоность появления строк.
+  std::unordered_map<std::string, size_t> freq_{};
 };
 
 } // namespace mr.

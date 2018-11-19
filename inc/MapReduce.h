@@ -19,7 +19,7 @@ template<typename Mapper, typename Reducer>
 class MapReduce : ThreadPool {
     /// Тип, описывающий секцию для разбиения исходного файла.
     using section_t = std::pair<size_t, size_t>;
-    /// Вектор строк, содержащий результат отображения.
+    /// Тип вектора строк, содержащего результат отображения.
     using str_vec_t = std::vector<std::string>;
 
   public:
@@ -69,14 +69,14 @@ class MapReduce : ThreadPool {
       size_t file_size = ifs.tellg();
       ifs.seekg(0, ifs.beg);
 
-      // Предварительный расчет размера секции, для операции отображения.
+      // Предварительный расчет размера секции, для операций отображения.
       size_t sect_size = file_size / map_num_;
       if(sect_size < 1)
         sect_size = 1;
       sections_.resize(map_num_);
+      sections_[0].first = 0;
 
-      size_t i{1};
-      for(; i < map_num_; ++i) {
+      for(size_t i{1}; i < map_num_; ++i) {
         const size_t pos = sect_size * i;
         if(pos > file_size) {
           // Уменьшение количества потоков отображения при малом числе обрабатываемых строк.
@@ -86,17 +86,17 @@ class MapReduce : ThreadPool {
 
         ifs.seekg(pos, std::ios::beg);
 
-        size_t offset = pos;
+        size_t section{pos};
         for(char ch = 0; ch != '\n' && ch != '\r';) {
           ifs.read(&ch, 1);
-          ++offset;
+          ++section;
         }
 
-        sections_[i - 1].second = offset;
-        sections_[i].first = offset + 1;
+        sections_[i - 1].second = section;
+        sections_[i].first = section + 1;
       }
       sections_[map_num_ - 1].second = file_size - 1;
-      sections_.resize(map_num_);
+      sections_.resize(map_num_); // Удаление пустых секций.
 
       ifs.close();
     }
@@ -107,7 +107,7 @@ class MapReduce : ThreadPool {
     void map() {
       mapped_.resize(map_num_);
 
-      start(map_num_);
+      start(map_num_); // Запуск mnum потоков отображения.
 
       size_t i{};
       for(const auto& it: sections_) {
@@ -125,19 +125,19 @@ class MapReduce : ThreadPool {
               if(!str.empty()) {
                 auto result = mapper(str);
                 mapped_[i].insert(mapped_[i].end(),
-                                       std::make_move_iterator(result.begin()),
-                                       std::make_move_iterator(result.end()));
+                                  std::make_move_iterator(result.begin()),
+                                  std::make_move_iterator(result.end()));
               }
               if(end <= ifs.tellg())
                 break;
             }
-            std::sort(mapped_[i].begin(), mapped_[i].end());
+            std::stable_sort(mapped_[i].begin(), mapped_[i].end());
           }
         });
         ++i;
       }
 
-      stop();
+      stop(); // Останов потоков отображения.
     }
 
     /**
@@ -145,34 +145,37 @@ class MapReduce : ThreadPool {
      */
     void shuffle() {
       shuffled_.resize(red_num_);
+      shuffle_guard_.resize(red_num_);
 
-      std::vector<std::mutex> reduce_guard(red_num_);
+      for(auto &it: shuffle_guard_)
+        it = std::make_unique<std::mutex>();
 
-      start(map_num_);
+      start(map_num_); // Запуск mnum потоков перемешивания.
 
       size_t i{};
-      for(auto& it: mapped_) {
-        add_job([this, i, &it, &reduce_guard](){
+      for(auto& str_vec: mapped_) {
+        add_job([this, i, &str_vec](){
           std::hash<std::string> hash;
-          for(auto& it: it) {
+          for(auto& it: str_vec) {
             if(!it.empty()){
-              auto j = hash(it) % red_num_;
+              auto j = hash(it) % red_num_; // Определение номера будещего потока свертки.
 
-              std::lock_guard<std::mutex> lock(reduce_guard[j]);
+              std::lock_guard<std::mutex> lock(*shuffle_guard_[j]);
               shuffled_[j].emplace_back(std::move(it));
             }
           }
         });
         ++i;
       }
-      stop();
+
+      stop(); // Останов потоков перемешивания.
     }
 
     /**
      * @brief Свертка.
      */
     void reduce() {
-      start(red_num_);
+      start(red_num_); // Запуск rnum потоков свертки.
 
       size_t i{};
       for(const auto& it: shuffled_) {
@@ -184,25 +187,27 @@ class MapReduce : ThreadPool {
             result = reducer(str);
 
           std::string filename = "result_" + std::to_string(i) + ".txt";
-          std::ofstream fs(filename);
-          if(fs.is_open()) {
-            fs << result << std::endl;
-            fs.close();
+          std::ofstream ofs(filename);
+          if(ofs.is_open()) {
+            ofs << result + 1 << std::endl;
+            ofs.close();
           }
         });
         ++i;
       }
 
-      stop();
+      stop(); // Останов потоков свертки.
     }
 
     /// Имя исходного файла.
     std::string filename_{};
     /// Результат отображения.
     std::vector<str_vec_t> mapped_;
-    /// Результат свертки.
+    /// Мьютексы разграничения доступа к результатам перемешивания.
+    std::vector<std::unique_ptr<std::mutex>> shuffle_guard_;
+    /// Результат перемешивания.
     std::vector<str_vec_t> shuffled_;
-    /// Результат разбиения исходного файла.ы
+    /// Результат разбиения исходного файла (пары начало/конец).
     std::vector<section_t> sections_;
     /// Количество потоков отображения.
     size_t map_num_{};
