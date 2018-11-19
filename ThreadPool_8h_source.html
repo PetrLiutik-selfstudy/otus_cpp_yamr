@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>yamr: Исходный файл inc/ThreadPool.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">yamr
+   </div>
+   <div id="projectbrief">Otus homework 14</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Указатель</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Классы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Пространства имен</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Файлы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Функции</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Макросы</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ThreadPool.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ThreadPool_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;condition_variable&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;future&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>mr {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classmr_1_1ThreadPool.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486">ThreadPool</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486">ThreadPool</a>(<span class="keyword">const</span> <a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486">ThreadPool</a>(<a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classmr_1_1ThreadPool.html#a6fd1c2bd05ec4195fda59f0164e96eb4">~ThreadPool</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp; <a class="code" href="classmr_1_1ThreadPool.html#a081def6dcf1be3130d8a079a5b608da2">operator = </a>(<span class="keyword">const</span> <a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp; <a class="code" href="classmr_1_1ThreadPool.html#a081def6dcf1be3130d8a079a5b608da2">operator = </a>(<a class="code" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08">start</a>(<span class="keywordtype">size_t</span> threads_num) {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i &lt; threads_num; ++i) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        threads_.emplace_back(std::thread([<span class="keyword">this</span>] {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;          <span class="keywordflow">for</span>(;;) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            std::function&lt;void()&gt; task;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;              std::unique_lock&lt;std::mutex&gt; lock(job_mutex_);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;              job_avail_.wait(lock, [<span class="keyword">this</span>]{ <span class="keywordflow">return</span> stop_ || !jobs_.empty(); });</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;              <span class="keywordflow">if</span>(stop_ &amp;&amp; jobs_.empty())</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;              task = std::move(jobs_.front());</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;              jobs_.pop();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;              job_id_++;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            task();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;          }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">   56</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">stop</a>() {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        std::unique_lock&lt;std::mutex&gt; lock(job_mutex_);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        stop_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      job_avail_.notify_all();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; it: threads_) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span>(it.joinable())</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          it.join();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>...Args&gt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">   77</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">add_job</a>(F&amp;&amp; f, Args&amp;&amp;... args) -&gt; std::future&lt;decltype(f(args...))&gt; {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      std::unique_lock&lt;std::mutex&gt; lock(job_mutex_);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      std::function&lt;decltype(f(args...))()&gt; func = std::bind(std::forward&lt;F&gt;(f),</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                                             std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <span class="keyword">auto</span> func_ptr = std::make_shared&lt;std::packaged_task&lt;decltype(f(args...))()&gt;&gt;(func);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      std::function&lt;void()&gt; wrappered_func = [func_ptr]() { (*func_ptr)(); };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      jobs_.push(wrappered_func);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      job_avail_.notify_one();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keywordflow">return</span> func_ptr-&gt;get_future();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classmr_1_1ThreadPool.html#ac404580ac853b572438f754c7c6a58a9">   96</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classmr_1_1ThreadPool.html#ac404580ac853b572438f754c7c6a58a9">get_job_id</a>() {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      <span class="keywordflow">return</span> job_id_;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    std::atomic_bool                  stop_{};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    std::atomic_uchar                 job_id_{};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::mutex                        job_mutex_{};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    std::condition_variable           job_avail_{};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    std::queue&lt;std::function&lt;void()&gt;&gt; jobs_{};</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::vector&lt;std::thread&gt;          threads_{};</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;} <span class="comment">// namespace mr.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a6fd1c2bd05ec4195fda59f0164e96eb4"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a6fd1c2bd05ec4195fda59f0164e96eb4">mr::ThreadPool::~ThreadPool</a></div><div class="ttdeci">~ThreadPool()=default</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a4d4ec3ed3bba94349861412587bca511"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">mr::ThreadPool::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Завершение работы всех потоков пула. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:56</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html"><div class="ttname"><a href="classmr_1_1ThreadPool.html">mr::ThreadPool</a></div><div class="ttdoc">Шаблон пула потоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:17</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a081def6dcf1be3130d8a079a5b608da2"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a081def6dcf1be3130d8a079a5b608da2">mr::ThreadPool::operator=</a></div><div class="ttdeci">ThreadPool &amp; operator=(const ThreadPool &amp;)=delete</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_ac404580ac853b572438f754c7c6a58a9"><div class="ttname"><a href="classmr_1_1ThreadPool.html#ac404580ac853b572438f754c7c6a58a9">mr::ThreadPool::get_job_id</a></div><div class="ttdeci">unsigned char get_job_id()</div><div class="ttdoc">Дать id текущей выполняемой задачи. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:96</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_aa71ab0d7a2d09f33372c53f310885486"><div class="ttname"><a href="classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486">mr::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool()=default</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a6efde29777ef95f35724076fd721c10a"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">mr::ThreadPool::add_job</a></div><div class="ttdeci">auto add_job(F &amp;&amp;f, Args &amp;&amp;...args) -&gt; std::future&lt; decltype(f(args...))&gt;</div><div class="ttdoc">Добавление задачи для пула потоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:77</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a725f4ac016836fc751ad94540a0fdb08"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08">mr::ThreadPool::start</a></div><div class="ttdeci">void start(size_t threads_num)</div><div class="ttdoc">Запуск потоков пула. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

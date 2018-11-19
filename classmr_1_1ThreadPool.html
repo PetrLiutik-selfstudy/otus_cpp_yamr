@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>yamr: Класс mr::ThreadPool</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">yamr
+   </div>
+   <div id="projectbrief">Otus homework 14</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="classes.html"><span>Алфавитный&#160;указатель&#160;классов</span></a></li>
+      <li><a href="inherits.html"><span>Иерархия&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Указатель</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Классы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Пространства имен</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Файлы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Функции</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Макросы</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacemr.html">mr</a></li><li class="navelem"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classmr_1_1ThreadPool-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс mr::ThreadPool</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Шаблон пула потоков.  
+ <a href="classmr_1_1ThreadPool.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ThreadPool_8h_source.html">ThreadPool.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:mr::ThreadPool:</div>
+<div class="dyncontent">
+<div class="center"><img src="classmr_1_1ThreadPool__inherit__graph.png" border="0" usemap="#mr_1_1ThreadPool_inherit__map" alt="Inheritance graph"/></div>
+<map name="mr_1_1ThreadPool_inherit__map" id="mr_1_1ThreadPool_inherit__map">
+<area shape="rect" id="node2" href="classmr_1_1MapReduce.html" title="Шаблон класса MapReduce. " alt="" coords="5,81,179,122"/></map>
+<center><span class="legend">[<a href="graph_legend.html">см. легенду</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:aa71ab0d7a2d09f33372c53f310885486"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486">ThreadPool</a> ()=default</td></tr>
+<tr class="separator:aa71ab0d7a2d09f33372c53f310885486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa58d7e7eccb53fbc5a39274a0a5c495f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#aa58d7e7eccb53fbc5a39274a0a5c495f">ThreadPool</a> (const <a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;)=delete</td></tr>
+<tr class="separator:aa58d7e7eccb53fbc5a39274a0a5c495f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3894d85614c447b610f31abeeeaa7553"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a3894d85614c447b610f31abeeeaa7553">ThreadPool</a> (<a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a3894d85614c447b610f31abeeeaa7553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd1c2bd05ec4195fda59f0164e96eb4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a6fd1c2bd05ec4195fda59f0164e96eb4">~ThreadPool</a> ()=default</td></tr>
+<tr class="separator:a6fd1c2bd05ec4195fda59f0164e96eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a081def6dcf1be3130d8a079a5b608da2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a081def6dcf1be3130d8a079a5b608da2">operator=</a> (const <a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;)=delete</td></tr>
+<tr class="separator:a081def6dcf1be3130d8a079a5b608da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06d9a31b94c0440d2968dd1eca49703e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a06d9a31b94c0440d2968dd1eca49703e">operator=</a> (<a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a06d9a31b94c0440d2968dd1eca49703e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725f4ac016836fc751ad94540a0fdb08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08">start</a> (size_t threads_num)</td></tr>
+<tr class="memdesc:a725f4ac016836fc751ad94540a0fdb08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запуск потоков пула.  <a href="#a725f4ac016836fc751ad94540a0fdb08">Подробнее...</a><br/></td></tr>
+<tr class="separator:a725f4ac016836fc751ad94540a0fdb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d4ec3ed3bba94349861412587bca511"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">stop</a> ()</td></tr>
+<tr class="memdesc:a4d4ec3ed3bba94349861412587bca511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершение работы всех потоков пула.  <a href="#a4d4ec3ed3bba94349861412587bca511">Подробнее...</a><br/></td></tr>
+<tr class="separator:a4d4ec3ed3bba94349861412587bca511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efde29777ef95f35724076fd721c10a"><td class="memTemplParams" colspan="2">template&lt;typename F , typename... Args&gt; </td></tr>
+<tr class="memitem:a6efde29777ef95f35724076fd721c10a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">add_job</a> (F &amp;&amp;f, Args &amp;&amp;...args) -&gt; std::future&lt; decltype(f(args...))&gt;</td></tr>
+<tr class="memdesc:a6efde29777ef95f35724076fd721c10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавление задачи для пула потоков.  <a href="#a6efde29777ef95f35724076fd721c10a">Подробнее...</a><br/></td></tr>
+<tr class="separator:a6efde29777ef95f35724076fd721c10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac404580ac853b572438f754c7c6a58a9"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmr_1_1ThreadPool.html#ac404580ac853b572438f754c7c6a58a9">get_job_id</a> ()</td></tr>
+<tr class="memdesc:ac404580ac853b572438f754c7c6a58a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Дать id текущей выполняемой задачи.  <a href="#ac404580ac853b572438f754c7c6a58a9">Подробнее...</a><br/></td></tr>
+<tr class="separator:ac404580ac853b572438f754c7c6a58a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Шаблон пула потоков. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="aa71ab0d7a2d09f33372c53f310885486"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mr::ThreadPool::ThreadPool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa58d7e7eccb53fbc5a39274a0a5c495f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mr::ThreadPool::ThreadPool </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3894d85614c447b610f31abeeeaa7553"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mr::ThreadPool::ThreadPool </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6fd1c2bd05ec4195fda59f0164e96eb4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mr::ThreadPool::~ThreadPool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a6efde29777ef95f35724076fd721c10a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename F , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mr::ThreadPool::add_job </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::future&lt;decltype(f(args...))&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Добавление задачи для пула потоков. </p>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>- тип задачи. </td></tr>
+    <tr><td class="paramname">Args</td><td>- типы аргументов задачи. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>- задача. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">args</td><td>- аргументы задачи. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>результат выполнения задачи. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac404580ac853b572438f754c7c6a58a9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char mr::ThreadPool::get_job_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Дать id текущей выполняемой задачи. </p>
+<dl class="section return"><dt>Возвращает</dt><dd>id текущей выполняемой задачи. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a081def6dcf1be3130d8a079a5b608da2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp; mr::ThreadPool::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a06d9a31b94c0440d2968dd1eca49703e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a>&amp; mr::ThreadPool::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmr_1_1ThreadPool.html">ThreadPool</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a725f4ac016836fc751ad94540a0fdb08"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mr::ThreadPool::start </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>threads_num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Запуск потоков пула. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">threads_num</td><td>- общее число потоков. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d4ec3ed3bba94349861412587bca511"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mr::ThreadPool::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Завершение работы всех потоков пула. </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>inc/<a class="el" href="ThreadPool_8h_source.html">ThreadPool.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>
