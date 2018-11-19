@@ -60,30 +60,45 @@ class MapReduce : ThreadPool {
      * @brief Разбиение исходного файла.
      */
     void split() {
-      std::ifstream ifs(filename_);
+      std::ifstream ifs(filename_, std::ios::in | std::ios::binary);
       if (!ifs.is_open()) {
         throw std::invalid_argument("The file can't be opened");
       }
 
-      // Поиск позиций символов '\n'.
-      std::string str;
-      std::vector<size_t> str_ends;
-      for(auto str_end = ifs.tellg(); std::getline(ifs, str) || (str_end >= 0); str_end = ifs.tellg())
-        str_ends.emplace_back(str_end);
+      ifs.seekg(0, ifs.end);
+      size_t file_size = ifs.tellg();
+      ifs.seekg(0, ifs.beg);
+
+      // Предварительный расчет размера секции, для операции отображения.
+      size_t sect_size = file_size / map_num_;
+      if(sect_size < 1)
+        sect_size = 1;
+      sections_.resize(map_num_);
+
+      size_t i{1};
+      for(; i < map_num_; ++i) {
+        const size_t pos = sect_size * i;
+        if(pos > file_size) {
+          // Уменьшение количества потоков отображения при малом числе обрабатываемых строк.
+          map_num_ = i + 1;
+          break;
+        }
+
+        ifs.seekg(pos, std::ios::beg);
+
+        size_t offset = pos;
+        for(char ch = 0; ch != '\n' && ch != '\r';) {
+          ifs.read(&ch, 1);
+          ++offset;
+        }
+
+        sections_[i - 1].second = offset;
+        sections_[i].first = offset + 1;
+      }
+      sections_[map_num_ - 1].second = file_size - 1;
+      sections_.resize(map_num_);
 
       ifs.close();
-
-      auto strs_num = str_ends.size() - 1;
-      // Уменьшение количества потоков отображения при малом числе обрабатываемых строк.
-      map_num_ = std::min(map_num_, strs_num);
-
-      auto mstrs_num = strs_num / map_num_;
-
-      for(size_t i = 0; i < strs_num; i += mstrs_num) {
-        auto beg = str_ends[i];
-        auto end = (i + mstrs_num < strs_num) ? str_ends[i + mstrs_num] : str_ends.back();
-        sections_.emplace_back(section_t{beg, end});
-      }
     }
 
     /**
@@ -136,10 +151,10 @@ class MapReduce : ThreadPool {
       start(map_num_);
 
       size_t i{};
-      for(auto& map: mapped_) {
-        add_job([this, i, &map, &reduce_guard](){
+      for(auto& it: mapped_) {
+        add_job([this, i, &it, &reduce_guard](){
           std::hash<std::string> hash;
-          for(auto& it: map) {
+          for(auto& it: it) {
             if(!it.empty()){
               auto j = hash(it) % red_num_;
 
@@ -166,7 +181,7 @@ class MapReduce : ThreadPool {
 
           size_t result{};
           for(const auto& str: it)
-            result = std::max(result, reducer(str));
+            result = reducer(str);
 
           std::string filename = "result_" + std::to_string(i) + ".txt";
           std::ofstream fs(filename);

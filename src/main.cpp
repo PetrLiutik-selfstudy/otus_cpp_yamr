@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
   }
 
   try {
-    mr::MapReduce<mr::Mapper, mr::Reducer> map_reduce(filename, mnum, rnum);
+    mr::MapReduce<mr::Mapper, mr::Reducer> map_reduce(filename, static_cast<size_t>(mnum), static_cast<size_t>(rnum));
     map_reduce.process();
   } catch(std::exception& e) {
     std::cerr << e.what() << std::endl;

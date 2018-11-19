@@ -31,7 +31,7 @@ class ThreadPool {
      * @param threads_num - общее число потоков.
      */
     void start(size_t threads_num) {
-      for(auto i = 0; i < threads_num; ++i) {
+      for(size_t i = 0; i < threads_num; ++i) {
         threads_.emplace_back(std::thread([this] {
           for(;;) {
             std::function<void()> task;
