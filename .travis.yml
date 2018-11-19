@@ -9,6 +9,8 @@ addons:
     packages:
       - gcc-7
       - g++-7
+      - doxygen
+      - graphviz
 
 install:
   - export CC=gcc-7
@@ -18,3 +20,20 @@ install:
 script:
   - cmake .
   - cmake --build .
+  - cmake --build . --target package
+  - doxygen Doxyfile
+
+deploy:
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    local-dir: html
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: master
+    script:
+    - curl -T yamr-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb -upetrljutik:$BINTRAY_API_KEY "https://api.bintray.com/content/petrljutik/yamr/yamr/$TRAVIS_BUILD_NUMBER/yamr-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
