@@ -63,6 +63,7 @@ class ThreadPool {
         if(it.joinable())
           it.join();
       }
+      threads_.clear();
     }
 
     /**

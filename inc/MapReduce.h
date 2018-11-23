@@ -184,12 +184,15 @@ class MapReduce : ThreadPool {
 
           size_t result{};
           for(const auto& str: it)
-            result = reducer(str);
+            result = reducer(str) + 1;
+
+          if(reducer.check_keys())
+            result = 0;
 
           std::string filename = "result_" + std::to_string(i) + ".txt";
           std::ofstream ofs(filename);
           if(ofs.is_open()) {
-            ofs << result + 1 << std::endl;
+            ofs << result << std::endl;
             ofs.close();
           }
         });

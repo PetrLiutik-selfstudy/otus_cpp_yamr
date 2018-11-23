@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <string>
-#include <unordered_map>
+#include <map>
 
 namespace mr {
 
@@ -17,11 +17,27 @@ struct Reducer
     return max_pref_;
   }
 
+  bool check_keys() {
+    if(freq_.cbegin() != freq_.cend()) {
+      auto it = freq_.cbegin();
+      auto key = it->first;
+      it++;
+
+      for(; it != freq_.cend(); ++it) {
+        if(key != it->first.substr(0, key.size()))
+          return false;
+        key = it->first;
+      }
+      return true;
+    }
+    return false;
+  }
+
 private:
   /// Максимальная длина префикса.
   size_t max_pref_{};
   /// Частотоность появления строк.
-  std::unordered_map<std::string, size_t> freq_{};
+  std::map<std::string, size_t> freq_{};
 };
 
 } // namespace mr.
