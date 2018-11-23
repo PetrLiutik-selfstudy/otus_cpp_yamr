@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['process',['process',['../classmr_1_1MapReduce.html#a09aaf57c3ce8949bdf29a9e0ede95b82',1,'mr::MapReduce']]],
-  ['project_5fversion_5fmajor',['PROJECT_VERSION_MAJOR',['../version_8h.html#abecd2198575b690d25a741857f8390d1',1,'version.h']]],
-  ['project_5fversion_5fminor',['PROJECT_VERSION_MINOR',['../version_8h.html#a43e23009192a3e216fefec17750d8673',1,'version.h']]],
-  ['project_5fversion_5fpatch',['PROJECT_VERSION_PATCH',['../version_8h.html#a4a5fc96a4bdd7d68ed99ccce9ca2e77e',1,'version.h']]]
+  ['operator_28_29',['operator()',['../classmr_1_1Mapper.html#af025583b5930c5a3c36a8dd5828c6050',1,'mr::Mapper::operator()()'],['../structmr_1_1Reducer.html#aff44d04c9a6e845b785e543982a97553',1,'mr::Reducer::operator()()']]],
+  ['operator_3d',['operator=',['../classmr_1_1ThreadPool.html#a081def6dcf1be3130d8a079a5b608da2',1,'mr::ThreadPool::operator=(const ThreadPool &amp;)=delete'],['../classmr_1_1ThreadPool.html#a06d9a31b94c0440d2968dd1eca49703e',1,'mr::ThreadPool::operator=(ThreadPool &amp;&amp;)=delete']]]
 ];

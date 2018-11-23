@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['ver_5fmajor',['ver_major',['../ver_8h.html#aba4335b56d75cb94866c39a4378c00b8',1,'ver_major():&#160;ver.cpp'],['../ver_8cpp.html#aba4335b56d75cb94866c39a4378c00b8',1,'ver_major():&#160;ver.cpp']]],
-  ['ver_5fminor',['ver_minor',['../ver_8h.html#ad800fb2a67179bf696cbc5a6e1f297cb',1,'ver_minor():&#160;ver.cpp'],['../ver_8cpp.html#ad800fb2a67179bf696cbc5a6e1f297cb',1,'ver_minor():&#160;ver.cpp']]],
-  ['ver_5fpatch',['ver_patch',['../ver_8h.html#af5a202cd1e165e806e2ef6a5c921e964',1,'ver_patch():&#160;ver.cpp'],['../ver_8cpp.html#af5a202cd1e165e806e2ef6a5c921e964',1,'ver_patch():&#160;ver.cpp']]]
+  ['threadpool',['ThreadPool',['../classmr_1_1ThreadPool.html#aa71ab0d7a2d09f33372c53f310885486',1,'mr::ThreadPool::ThreadPool()=default'],['../classmr_1_1ThreadPool.html#aa58d7e7eccb53fbc5a39274a0a5c495f',1,'mr::ThreadPool::ThreadPool(const ThreadPool &amp;)=delete'],['../classmr_1_1ThreadPool.html#a3894d85614c447b610f31abeeeaa7553',1,'mr::ThreadPool::ThreadPool(ThreadPool &amp;&amp;)=delete']]]
 ];

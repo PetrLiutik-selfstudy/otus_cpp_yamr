@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['start',['start',['../classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08',1,'mr::ThreadPool']]],
-  ['stop',['stop',['../classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511',1,'mr::ThreadPool']]]
+  ['process',['process',['../classmr_1_1MapReduce.html#a09aaf57c3ce8949bdf29a9e0ede95b82',1,'mr::MapReduce']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5fjob_5fid',['get_job_id',['../classmr_1_1ThreadPool.html#ac404580ac853b572438f754c7c6a58a9',1,'mr::ThreadPool']]]
+  ['check_5fkeys',['check_keys',['../structmr_1_1Reducer.html#a5d71f573ab0737e9e0d1111df5e685be',1,'mr::Reducer']]]
 ];

@@ -247,31 +247,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;          <span class="keywordtype">size_t</span> result{};</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;          <span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; str: it)</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            result = reducer(str);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            result = reducer(str) + 1;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;          std::string filename = <span class="stringliteral">&quot;result_&quot;</span> + std::to_string(i) + <span class="stringliteral">&quot;.txt&quot;</span>;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;          std::ofstream ofs(filename);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;          <span class="keywordflow">if</span>(ofs.is_open()) {</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            ofs &lt;&lt; result + 1 &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            ofs.close();</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;          }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        });</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        ++i;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      <a class="code" href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">stop</a>(); <span class="comment">// Останов потоков свертки.</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;          <span class="keywordflow">if</span>(reducer.check_keys())</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            result = 0;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;          std::string filename = <span class="stringliteral">&quot;result_&quot;</span> + std::to_string(i) + <span class="stringliteral">&quot;.txt&quot;</span>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;          std::ofstream ofs(filename);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;          <span class="keywordflow">if</span>(ofs.is_open()) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            ofs &lt;&lt; result &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            ofs.close();</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;          }</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        });</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        ++i;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      }</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    std::string filename_{};</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    std::vector&lt;str_vec_t&gt; mapped_;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    std::vector&lt;std::unique_ptr&lt;std::mutex&gt;&gt; shuffle_guard_;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    std::vector&lt;str_vec_t&gt; shuffled_;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    std::vector&lt;section_t&gt; sections_;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">size_t</span> map_num_{};</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordtype">size_t</span> red_num_{};</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;};</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;} <span class="comment">// namespace mr.</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      <a class="code" href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">stop</a>(); <span class="comment">// Останов потоков свертки.</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    std::string filename_{};</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    std::vector&lt;str_vec_t&gt; mapped_;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    std::vector&lt;std::unique_ptr&lt;std::mutex&gt;&gt; shuffle_guard_;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    std::vector&lt;str_vec_t&gt; shuffled_;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    std::vector&lt;section_t&gt; sections_;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordtype">size_t</span> map_num_{};</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">size_t</span> red_num_{};</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;};</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;} <span class="comment">// namespace mr.</span></div>
 <div class="ttc" id="ThreadPool_8h_html"><div class="ttname"><a href="ThreadPool_8h.html">ThreadPool.h</a></div></div>
 <div class="ttc" id="classmr_1_1ThreadPool_html_a4d4ec3ed3bba94349861412587bca511"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a4d4ec3ed3bba94349861412587bca511">mr::ThreadPool::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Завершение работы всех потоков пула. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:56</div></div>
 <div class="ttc" id="classmr_1_1MapReduce_html_a2c6fd3225091965830853479e2333fab"><div class="ttname"><a href="classmr_1_1MapReduce.html#a2c6fd3225091965830853479e2333fab">mr::MapReduce::~MapReduce</a></div><div class="ttdeci">~MapReduce()=default</div></div>
@@ -279,7 +282,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <div class="ttc" id="classmr_1_1MapReduce_html_a7c7e0daf4ec07a6e2b4df8db743fa2f3"><div class="ttname"><a href="classmr_1_1MapReduce.html#a7c7e0daf4ec07a6e2b4df8db743fa2f3">mr::MapReduce::MapReduce</a></div><div class="ttdeci">MapReduce(const std::string &amp;filename, size_t map_num, size_t red_num)</div><div class="ttdoc">Конструктор. </div><div class="ttdef"><b>Definition:</b> MapReduce.h:33</div></div>
 <div class="ttc" id="classmr_1_1MapReduce_html"><div class="ttname"><a href="classmr_1_1MapReduce.html">mr::MapReduce</a></div><div class="ttdoc">Шаблон класса MapReduce. </div><div class="ttdef"><b>Definition:</b> MapReduce.h:19</div></div>
 <div class="ttc" id="classmr_1_1MapReduce_html_a09aaf57c3ce8949bdf29a9e0ede95b82"><div class="ttname"><a href="classmr_1_1MapReduce.html#a09aaf57c3ce8949bdf29a9e0ede95b82">mr::MapReduce::process</a></div><div class="ttdeci">void process()</div><div class="ttdoc">Процесс MapReduce. </div><div class="ttdef"><b>Definition:</b> MapReduce.h:43</div></div>
-<div class="ttc" id="classmr_1_1ThreadPool_html_a6efde29777ef95f35724076fd721c10a"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">mr::ThreadPool::add_job</a></div><div class="ttdeci">auto add_job(F &amp;&amp;f, Args &amp;&amp;...args) -&gt; std::future&lt; decltype(f(args...))&gt;</div><div class="ttdoc">Добавление задачи для пула потоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:77</div></div>
+<div class="ttc" id="classmr_1_1ThreadPool_html_a6efde29777ef95f35724076fd721c10a"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a6efde29777ef95f35724076fd721c10a">mr::ThreadPool::add_job</a></div><div class="ttdeci">auto add_job(F &amp;&amp;f, Args &amp;&amp;...args) -&gt; std::future&lt; decltype(f(args...))&gt;</div><div class="ttdoc">Добавление задачи для пула потоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:78</div></div>
 <div class="ttc" id="classmr_1_1ThreadPool_html_a725f4ac016836fc751ad94540a0fdb08"><div class="ttname"><a href="classmr_1_1ThreadPool.html#a725f4ac016836fc751ad94540a0fdb08">mr::ThreadPool::start</a></div><div class="ttdeci">void start(size_t threads_num)</div><div class="ttdoc">Запуск потоков пула. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:33</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
